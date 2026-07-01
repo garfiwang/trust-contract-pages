@@ -1,0 +1,506 @@
+/*
+ * 問大師信託契約教學網 - 共用樣式表
+ * 專為 50 歲以上中高齡學生設計，注重高對比度、加大字型與無障礙閱讀
+ */
+
+/* 變數定義 */
+:root {
+  --bg-color: #F9F5F0;          /* 問大師米白底色 */
+  --text-color: #3E2115;        /* 問大師深褐文字色 */
+  --accent-color: #C9A227;      /* 問大師金色 */
+  --accent-light: rgba(201, 162, 39, 0.15);
+  --border-color: rgba(62, 33, 21, 0.2);
+  --card-bg: #FFFFFF;
+  --shadow-color: rgba(62, 33, 21, 0.06);
+  --button-text: #FFFFFF;
+  --topbar-bg: rgba(255, 255, 255, 0.85); /* 米白模式半透明背景 */
+  
+  /* 預設字型大小 (18px) */
+  --base-font-size: 1.125rem;
+}
+
+/* 深色模式變數 */
+[data-theme="dark"] {
+  --bg-color: #1F1510;          /* 深褐黑色 */
+  --text-color: #F5EBE6;        /* 淺米色 */
+  --accent-color: #E5B830;      /* 亮金色 */
+  --accent-light: rgba(229, 184, 48, 0.2);
+  --border-color: rgba(245, 235, 230, 0.2);
+  --card-bg: #2C1E17;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --button-text: #1F1510;
+  --topbar-bg: rgba(44, 30, 23, 0.85);   /* 深色模式半透明背景 */
+}
+
+/* 高對比模式變數 */
+[data-theme="high-contrast"] {
+  --bg-color: #000000;          /* 純黑 */
+  --text-color: #FFFFFF;        /* 純白 */
+  --accent-color: #FFFF00;      /* 純黃 */
+  --accent-light: rgba(255, 255, 0, 0.25);
+  --border-color: #FFFFFF;
+  --card-bg: #000000;
+  --shadow-color: transparent;
+  --button-text: #000000;
+  --topbar-bg: #000000;                 /* 高對比不透明背景 */
+}
+
+/* 基本設定 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.8;
+  font-size: var(--base-font-size);
+  padding-top: 90px;             /* 預留空間給固定在頂部的標題列 */
+  padding-bottom: 4rem;
+}
+
+/* 學生字型級別控制 */
+body.font-size-sm {
+  --base-font-size: 0.95rem; /* ~15px */
+}
+body.font-size-md {
+  --base-font-size: 1.125rem; /* ~18px (預設) */
+}
+body.font-size-lg {
+  --base-font-size: 1.375rem; /* ~22px */
+}
+body.font-size-xl {
+  --base-font-size: 1.625rem; /* ~26px */
+}
+
+/* 網頁頂部控制列 */
+.top-bar {
+  background-color: var(--topbar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out;
+}
+
+/* 浮動式標題列隱藏狀態 */
+.top-bar.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.brand-logo {
+  background-color: var(--accent-color);
+  color: var(--button-text);
+  font-weight: bold;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 1.25rem;
+}
+
+.brand-name {
+  color: var(--text-color);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  background-color: var(--accent-light);
+  color: var(--accent-color);
+}
+
+/* 無障礙工具列 */
+.accessibility-bar {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-color);
+  padding: 0.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.control-label {
+  font-size: 0.85rem;
+  padding: 0 0.5rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.btn-acc {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 32px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-acc:hover, .btn-acc.active {
+  background-color: var(--accent-color);
+  color: var(--button-text);
+}
+
+/* 網頁主容器 */
+.container {
+  max-width: 960px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+/* 首頁英雄區 */
+.hero-section {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-color) 100%);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 3rem;
+  box-shadow: 0 8px 30px var(--shadow-color);
+}
+
+.hero-section h1 {
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-weight: 800;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  opacity: 0.85;
+}
+
+/* 契約卡片列表 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.contract-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 18px var(--shadow-color);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.contract-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(62, 33, 21, 0.12);
+  border-color: var(--accent-color);
+}
+
+.card-tag {
+  background-color: var(--accent-light);
+  color: var(--accent-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  align-self: flex-start;
+  margin-bottom: 1rem;
+}
+
+.contract-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.contract-card p {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.card-link {
+  color: var(--accent-color);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+/* 契約內容區 */
+.contract-paper {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 3rem 4rem;
+  box-shadow: 0 8px 32px var(--shadow-color);
+  margin-top: 2rem;
+}
+
+.contract-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 1rem;
+  font-weight: 800;
+}
+
+.contract-section {
+  margin-top: 2rem;
+}
+
+.contract-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  border-left: 4px solid var(--accent-color);
+  padding-left: 0.75rem;
+  font-weight: 700;
+}
+
+.contract-p {
+  margin-bottom: 1rem;
+  text-indent: 2em;
+  text-align: justify;
+}
+
+.contract-p.no-indent {
+  text-indent: 0;
+}
+
+.contract-list {
+  margin-left: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.contract-list li {
+  margin-bottom: 0.5rem;
+  text-align: justify;
+}
+
+/* 個資去識別化標示 */
+.redacted {
+  background-color: var(--accent-light);
+  border: 1px dashed var(--accent-color);
+  color: var(--accent-color);
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  display: inline-block;
+  text-indent: 0 !important;
+}
+
+/* 契約表格 */
+.contract-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95em;
+}
+
+.contract-table th, .contract-table td {
+  border: 1px solid var(--text-color);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.contract-table th {
+  background-color: var(--accent-light);
+  font-weight: bold;
+}
+
+/* 列印及操作按鈕 */
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn-action {
+  background-color: var(--accent-color);
+  color: var(--button-text);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: all 0.2s;
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(201, 162, 39, 0.3);
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent-light);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* 提示卡片 */
+.info-alert {
+  background-color: var(--accent-light);
+  border-left: 5px solid var(--accent-color);
+  padding: 1rem 1.5rem;
+  border-radius: 4px 12px 12px 4px;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+/* 頁尾 */
+footer {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  border-top: 1px solid var(--border-color);
+  margin-top: 4rem;
+}
+
+/* RWD 響應式調整 */
+@media (max-width: 768px) {
+  body {
+    padding-top: 195px;          /* 手機版標題列折行，增加頂部間距 */
+  }
+  .top-bar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .contract-paper {
+    padding: 2rem;
+  }
+  .accessibility-bar {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .control-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* 列印專用樣式 */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+  }
+  
+  .top-bar, .accessibility-bar, .action-bar, footer, .info-alert {
+    display: none !important;
+  }
+  
+  .container {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .contract-paper {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+  }
+  
+  .contract-title {
+    border-bottom: 2px solid #000000 !important;
+    color: #000000 !important;
+  }
+  
+  .redacted {
+    background-color: transparent !important;
+    border: 1px solid #000000 !important;
+    color: #000000 !important;
+  }
+  
+  .contract-table th {
+    background-color: #F0F0F0 !important;
+    color: #000000 !important;
+  }
+  
+  .contract-table th, .contract-table td {
+    border: 1px solid #000000 !important;
+  }
+}
